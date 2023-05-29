@@ -1,5 +1,6 @@
 import openai
 from dotenv import load_dotenv
+import streamlit as st
 #from flask import Flask
 import os
 
@@ -7,14 +8,11 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 #app = Flask(__name__)
-message_history = [
-    {"role": "system", "content": "You are a language tutor who is having a language with the user in their target language."}
-]
 
 # Stages: 
 #   (1) Console App
-#   (2) Streamlit Deployment *
-#   (3) Stateful API & Frontend
+#   (2) Streamlit Deployment
+#   (3) Stateful API & Frontend *
 #   (4) Stateless API w/ Database
 
 
@@ -76,15 +74,26 @@ class StoryAgent:
 
         return assistant_response
 
+def display_conversation(convo):
+    for exchange in convo:
+        student, tutor = exchange
+        st.write(student)
+        st.write(tutor)
 
 if __name__ == "__main__":
-    target_language = input("Language: ")
+    st.title("Lisan")
+    target_language = st.sidebar.text_input("Language: ")
     storywriter = StoryAgent(target_language)
     tutor = FeedbackAgent(target_language)
-    while True:
-        new_message = input("You: ")
+    i = 0
+    new_message = st.sidebar.text_input("You: ", i)
+    submit_message = st.sidebar.button("Add Sentence")
+    conversation = []
+    if submit_message:
         response = storywriter.send_message(new_message)
-        feedback = tutor.get_feedback(new_message)
-        print(f"Feedback: {feedback}")
-        print(f"Lisan: {response}")
+        conversation.append([new_message, response])
+        #feedback = tutor.get_feedback(new_message)
+        #st.write(f"Feedback: {feedback}")
+        
+    display_conversation(conversation)
     #app.run(debug=True)
