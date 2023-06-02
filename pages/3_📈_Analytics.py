@@ -53,7 +53,7 @@ config = Config(width=750,
                 height=950,
                 directed=True, 
                 physics=True, 
-                hierarchical=True,
+                hierarchical=False,
                 # **kwargs
                 )
 return_value = agraph(nodes=trie_nodes, 
