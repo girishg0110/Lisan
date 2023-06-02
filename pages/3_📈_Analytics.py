@@ -27,7 +27,7 @@ st.subheader("Vocabulary Trie")
 def make_trie(words):
     trie = Trie({word : i for i, word in enumerate(words)})
     visited = dict()
-    root = Node(id="root", label="*")
+    root = Node(id="root", label="root", title="root")
     visited['root'] = True
     nodes = [root]
     edges = []
@@ -39,10 +39,10 @@ def make_trie(words):
             curr = prefix
             # check if prev, curr are in nodes; add prev->curr to edges
             if prev not in visited:
-                nodes.append(Node(id=prev, label=prev, size=50, color='white'))
+                nodes.append(Node(id=prev, label=prev, size=50))
                 visited[prev] = True
             if curr not in visited:
-                nodes.append(Node(id=curr, label=curr, size=50, color='white'))
+                nodes.append(Node(id=curr, label=curr, size=50))
                 visited[curr] = True
             edges.append(Edge(source=prev, label='prefixes', target=curr))
     return nodes, edges      
