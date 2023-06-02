@@ -39,10 +39,10 @@ def make_trie(words):
             curr = prefix
             # check if prev, curr are in nodes; add prev->curr to edges
             if prev not in visited:
-                nodes.append(Node(id=prev, label=prev, size=25, color='white'))
+                nodes.append(Node(id=prev, label=prev, size=50, color='white'))
                 visited[prev] = True
             if curr not in visited:
-                nodes.append(Node(id=curr, label=curr, size=25, color='white'))
+                nodes.append(Node(id=curr, label=curr, size=50, color='white'))
                 visited[curr] = True
             edges.append(Edge(source=prev, label='prefixes', target=curr))
     return nodes, edges      
