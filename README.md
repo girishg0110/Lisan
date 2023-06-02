@@ -1,22 +1,40 @@
 # Lisan
 
-Lisan (pron. lee-saan) uses collaborative storytelling to fill the market gap in intermediate-level language learning services. Users will develop professional competency in an international language (like English, Arabic, French, etc...) by writing a story with Claude. Feedback on vocabulary and grammar will be provided, and new words will be logged for export into online flashcard services like Anki and Quizlet. 
+Lisan (pron. lee-saan) uses collaborative storytelling to fill the market gap in intermediate-level language learning services. Users will develop professional competency in an international language (like English, French, Spanish, etc...) by writing a story with Lisan. 
 
-<!-- # Stages:
-#   (1) Console App
-#   (2) Streamlit Deployment
-#   (3) Stateful API & Frontend *
-#   (4) Stateless API w/ Database
+* 🧠 Receive immediate feedback on your sentences. 
+* 👩‍🏫 Tailor Lisan to match your CEFR language level.
+* 🎤 Hear Lisan speak in your language. 
+* ⛏️ Get a word-level breakdown of all sentences in the story. 
+* 📂 Export flashcards for use on platforms like Anki and Quizlet.
+* 📈 View analytics on a personalized dashboard. 
 
-# Add part of speech tagging -- in annotated AND add Anki flashcard import -- sentence to sentence => word to word
+## Getting Started
+All necessary Python packages are included in the requirements.txt file. Execute
+```
+python -m pip install -r requirements.txt
+```
+to install all Python dependences.
 
-# Command Loop: {EN <-> FR}
-# START.
-# The LLM writes a sentence. The user translates.
-# The LLM judges. The user writes a sentence. The LLM judges.
-# Goto START.
-# Need to call for (1) story completion and (2) judging -> extract poorly used vocab
-# 1) POST /story-completion/ {story_history} => story_history[-1] = last user sentence
-# : return {story_history}* , translation of story_history[-1], feedback on previous sentence
-# Run two agents. One for telling the story and exchanging sentences. One acts on user sentences and gives feedback, also extracts poorly used words.
-# Will eventually store conversations in a database and just send conversation_id to the user -->
+Lisan needs additional data downloaded through NLTK, the natural language toolkit. Open a Python client in the command line and execute
+```python
+>> import nltk
+>> nltk.download('punkt')
+>> nltk.download('averaged_perceptron_tagger')
+```
+
+On Ubuntu, install ffmpeg and espeak using the command
+```
+sudo apt install espeak ffmpeg
+```
+
+Create a .env file with a single line containing your Anthropic API key.
+```
+ANTHROPIC_API_KEY="ADD_YOUR_KEY_HERE"
+```
+It will be loaded as an environment variable.
+
+Ready? Jump into a new language with Lisan!
+```
+streamlit run Home.py
+```
