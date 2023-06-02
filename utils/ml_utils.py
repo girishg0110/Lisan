@@ -1,12 +1,12 @@
 from dotenv import load_dotenv
 import anthropic
-import os
 import json
 from gtts import gTTS
 from io import BytesIO
+import streamlit as st
 
 load_dotenv()
-anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+anthropic_api_key = st.secrets["ANTHROPIC_API_KEY"]
 claude = anthropic.Client(anthropic_api_key)
 
 class FeedbackAgent:
