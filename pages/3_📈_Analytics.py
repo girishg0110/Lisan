@@ -7,6 +7,7 @@ from annotated_text import annotated_text
 from pytrie import SortedStringTrie as Trie
 from streamlit_agraph import agraph, Node, Edge, Config
 
+st.sidebar.success("Turn on Light Mode to view the Vocabulary Trie.")
 storywriter = st.session_state.storywriter
 # Show tagged POS for full story
 st.subheader("Part of Speech Tagging")
